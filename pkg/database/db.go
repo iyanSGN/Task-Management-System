@@ -8,6 +8,7 @@ import (
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"main.go/models"
 )
 
 var db *gorm.DB
@@ -48,5 +49,13 @@ func InitDB() {
 
 	fmt.Println("success connect to database")
 	
+}
+
+func Migrate() {
+	db.AutoMigrate(
+		&models.MRole{},
+		&models.MTask{},
+		&models.MUser{},
+	)
 }
 
